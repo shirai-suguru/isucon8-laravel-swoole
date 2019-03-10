@@ -61,6 +61,7 @@ class TorbRepository
     
         $retEvents['id'] = (int) $event->id;
         $retEvents['title'] = $event->title;
+        $retEvents['price'] = $event->price;
     
         // zero fill
         $retEvents['total'] = 0;
