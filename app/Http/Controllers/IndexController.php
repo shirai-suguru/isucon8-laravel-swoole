@@ -219,7 +219,7 @@ class IndexController extends Controller
     
         $retUser['recent_events'] = $recent_events($this);
 
-        Log::channel('sql')->debug(var_export($retUser, true));
+        // Log::channel('sql')->debug(var_export($retUser, true));
 
         
         return response()->json($retUser, 200);
