@@ -1,4 +1,4 @@
-<?php $user = null; ?>
+<?php $user = session('user_id'); ?>
 <!DOCTYPE html>
 <html lang="ja">
   <head>

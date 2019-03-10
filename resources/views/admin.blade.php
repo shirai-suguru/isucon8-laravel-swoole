@@ -1,4 +1,4 @@
-<?php $administrator = null; ?>
+<?php $administrator = (int) session('administrator_id'); ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -15,10 +15,10 @@
 <div id="container" class="container">
 
     <div id="app-wrapper" data-administrator="@if ($administrator)
-    {{ json_encode($administrator) }}" data-events="{{ json_encode($events) }}">
-    @else
-    null" data-events="{{ json_encode($events) }}">
-    @endif
+{{ json_encode($administrator) }}" data-events="{{ json_encode($events) }}">
+@else
+null" data-events="{{ json_encode($events) }}">
+@endif
     @verbatim
         <nav id="menu-bar" class="navbar navbar-expand-lg navbar-light bg-light">
             <h1 class="navbar-brand h5">Torb管理</h1>
