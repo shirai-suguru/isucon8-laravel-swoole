@@ -1,0 +1,22 @@
+version: '3'
+services:
+  mysql:
+    container_name: isucon8-laravel-db
+    image: mysql:5.6
+    ports:
+      - "3306:3306" # <-これがないと外からアクセス出来ない
+    expose:
+      - 3306
+    command: mysqld --character-set-server=utf8mb4
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_PASSWORD: ""
+      MYSQL_USER: root
+    volumes:
+      - "mysql:/var/lib/mysql"
+      - "./_sql:/docker-entrypoint-initdb.d"
+volumes:
+  # 基本的に永続化される。ただし「docker-compose down -v」等されるとボリュームも削除されるので注意！
+  mysql:
+    driver: local
