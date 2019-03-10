@@ -200,7 +200,7 @@ class IndexController extends Controller
         $retUser['nickname'] = $user->nickname;
 
         $retUser['recent_reservations'] = $recent_reservations($this);
-        $retUser['total_price'] = DB::select('SELECT IFNULL(SUM(e.price + s.price), 0) AS `total_price` FROM reservations r INNER JOIN sheets s ON s.id = r.sheet_id INNER JOIN events e ON e.id = r.event_id WHERE r.user_id = ? AND r.canceled_at IS NULL', [$user->id])[0]->total_price;
+        $retUser['total_price'] = (int) DB::select('SELECT IFNULL(SUM(e.price + s.price), 0) AS `total_price` FROM reservations r INNER JOIN sheets s ON s.id = r.sheet_id INNER JOIN events e ON e.id = r.event_id WHERE r.user_id = ? AND r.canceled_at IS NULL', [$user->id])[0]->total_price;
     
         $recent_events = function () use ($user) {
             $recent_events = [];
