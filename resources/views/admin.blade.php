@@ -1,4 +1,3 @@
-<?php $administrator = (int) session('administrator_id'); ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>

@@ -59,12 +59,15 @@ class IndexController extends Controller
 
     public function index()
     {
+        $user = $this->torbRepository->getLoginUser();
+
         $events = array_map(function (array $event) {
             return $this->torbRepository->sanitize_event($event);
         }, $this->torbRepository->get_events());
 
         return view('index', [
             'events' => $events,
+            'user'   => $user,
         ]);
     }
 
@@ -366,6 +369,7 @@ class IndexController extends Controller
 
         return view('admin', [
             'events' => $events,
+            'administrator' => $administrator,
         ]);
     }
 
