@@ -196,6 +196,9 @@ class IndexController extends Controller
         };
     
         $retUser = [];
+        $retUser['id'] = $user->id;
+        $retUser['nickname'] = $user->nickname;
+
         $retUser['recent_reservations'] = $recent_reservations($this);
         $retUser['total_price'] = DB::select('SELECT IFNULL(SUM(e.price + s.price), 0) AS `total_price` FROM reservations r INNER JOIN sheets s ON s.id = r.sheet_id INNER JOIN events e ON e.id = r.event_id WHERE r.user_id = ? AND r.canceled_at IS NULL', [$user->id])[0]->total_price;
     
@@ -215,7 +218,10 @@ class IndexController extends Controller
         };
     
         $retUser['recent_events'] = $recent_events($this);
-    
+
+        Log::channel('sql')->debug(var_export($retUser, true));
+
+        
         return response()->json($retUser, 200);
     }
 
