@@ -238,7 +238,12 @@ class IndexController extends Controller
     {
         $event_id = $id;
         $user = $this->torbRepository->getLoginUser();
-        $event = $this->torbRepository->get_event($event_id, $user->id);
+
+        if ($user) {
+            $event = $this->torbRepository->get_event($event_id, $user->id);
+        } else {
+            $event = $this->torbRepository->get_event($event_id);
+        }
     
         if (empty($event) || !$event['public']) {
             return $this->res_error('not_found', 404);
