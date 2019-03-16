@@ -75,7 +75,7 @@ class IndexController extends Controller
      */
     public function initialize()
     {
-        exec('./db/init.sh');
+	exec(dirname(__FILE__) . '/../../../db/init.sh');
         return response('', 204);
     }
 
